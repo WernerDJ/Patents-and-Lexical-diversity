@@ -24,7 +24,6 @@ shapiro.test(Granted$GuiraudR)	   #  p-value = 0.4138
 shapiro.test(NonGranted$GuiraudR)  #  p-value = 0.5529
 shapiro.test(Granted$UberIndex)    #  p-value < 2.2e-16  /way bellow the 0.05 significance level
 shapiro.test(NonGranted$UberIndex) #  p-value < 2.2e-16  /way bellow the 0.05 significance level
-
 T tests on the Herand C and Guiraud Root index populations
 t.test(HerdanC~Granted)  # p-value = 0.1082, no difference can be proven between granted and non granted patents in lexical diversity
 t.test(GuiraudR~Granted) # p-value = 0.4659, no difference can be proven between granted and non granted patents in lexical diversity
