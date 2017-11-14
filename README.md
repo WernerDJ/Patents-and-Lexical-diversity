@@ -16,12 +16,15 @@ The patent application abstracts (between 100 and 150 words as average) were ana
 The population of patents was separated in two groups Yes and No (granted patent)
 
 H0 (null hypothesys) the median lexical diversity values is the same in granted and non granted patents
+
 HA (alternative hypothesys) the medians are signifiantly different
 
 A confidence level of 95%, alpha = 0,05 was used to reject or not the null hypothesys.
 
 In order to apply t.test to the lexical diversity index populations obtained it was first assessed their normality by the Shapiro  test.
+
 Two of the lexical diversity indexes, TTR and Uber Index didn't present normal populations reason why they were not taken into account.
+
 Normality test Results
 
 shapiro.test(Granted$HerdanC) 	   #  p-value = 0.1579 
