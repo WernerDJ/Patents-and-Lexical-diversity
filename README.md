@@ -23,29 +23,5 @@ A confidence level of 95%, alpha = 0,05 was used to reject or not the null hypot
 
 In order to apply t.test to the lexical diversity index populations obtained it was first assessed their normality by the Shapiro  test.
 
-Two of the lexical diversity indexes, TTR and Uber Index didn't present normal populations reason why they were not taken into account.
-
-Normality test Results
-
-shapiro.test(Granted$HerdanC) 	   #  p-value = 0.1579 
-
-shapiro.test(NonGranted$HerdanC)   #  p-value = 0.07579
-
-shapiro.test(Granted$TTR)	         #  p-value = 0.02253  /bellow the 0.05 significance level
-
-shapiro.test(NonGranted$TTR)	     #  p-value = 0.05392  /close to the 0.05 significance level
-
-shapiro.test(Granted$GuiraudR)	   #  p-value = 0.4138
-
-shapiro.test(NonGranted$GuiraudR)  #  p-value = 0.5529
-
-shapiro.test(Granted$UberIndex)    #  p-value < 2.2e-16  /way bellow the 0.05 significance level
-
-shapiro.test(NonGranted$UberIndex) #  p-value < 2.2e-16  /way bellow the 0.05 significance level
-
-T tests on the Herand C and Guiraud Root index populations
-
-t.test(HerdanC vs Granted)  # p-value = 0.1082, no difference can be proven between granted and non granted patents in lexical diversity
-
-t.test(GuiraudR vs Granted) # p-value = 0.4659, no difference can be proven between granted and non granted patents in lexical diversity
+The results of the tests are written as R comments (after #) in the R files attached to this github branch
 
