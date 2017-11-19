@@ -23,5 +23,5 @@ A confidence level of 95%, alpha = 0,05 was used to reject or not the null hypot
 
 In order to apply t.test to the lexical diversity index populations obtained it was first assessed their normality by the Shapiro  test.
 
-The results of the tests are written as R comments (after #) in the R files attached to this github branch
+The results of the tests are written as R comments (after #) in the R files attached to this github branch and in the Lexical Diversity report included as apdf file
 
