@@ -7,7 +7,7 @@ The search string for Germany was:
 ((PRC AND APPC) = DE) AND (PUC = US) AND PUD>20050101 AND PUD<20080101
 Where PRC means priority country, APPC means applicant country, PUC publication country and PUD publication date
 
-The 9 sets of data were joined in one file resultlist.csv
+The 9 sets of data were joined in one file Resultlist.csv
 
 The number of 50 applications per country was dictated by the necessity of using a similar number for each country, where there are countries like Germany that in the period considered published above 30 0000 applications there are others like Hungary that filed 53. 
 
@@ -23,5 +23,5 @@ A confidence level of 95%, alpha = 0,05 was used to reject or not the null hypot
 
 In order to apply t.test to the lexical diversity index populations obtained it was first assessed their normality by the Shapiro  test.
 
-The results of the tests are written as R comments (after #) in the R files attached to this github branch and in the Lexical Diversity report included as apdf file
+The results of the tests are written as R comments (after #) in the R files attached to this github branch and in the Lexical Diversity report included as a pdf file
 
