@@ -5,8 +5,10 @@
 library(quanteda)
 #
 # load the data from the dierectory where it was saved (remember to change the \ in the path string by / if you copy paste the path)
+# Cluster sampling was used to avoid over representation from more prolifict patenting countries affecting the lexical diversity measures
+# 50 aleatory patents from 9 European non English speaking Cuntries
 #
-resultlist <- read.csv("C:/..../resultlist.csv", sep=";")
+resultlist <- read.csv("C:/Users/Chupacabras/Dropbox/datamining/EPO_Language/resultlist.csv", sep=";")
 #
 # Change the column names that have uncofortable names in the downloaded GPI csv file
 #
@@ -42,51 +44,11 @@ for (fila in 1:n) {
 	myDfm <- dfm(myCorpus)
 	myStemMat <- dfm(myCorpus, remove = stopwords("english"), stem = TRUE, remove_punct = TRUE)
 	statis <-textstat_lexdiv(myStemMat, measure = c("all", "TTR", "C", "R", "CTTR", "U", "S","Maas"), log.base = 10, drop = TRUE)
-	LexicalDiv$TTR[fila] <- as.numeric(statis[1])
-	LexicalDiv$HerdanC[fila] <- as.numeric(statis[2])
-	LexicalDiv$GuiraudR[fila] <- as.numeric(statis[3])
-	LexicalDiv$UberIndex[fila] <- as.numeric(statis[5])
+	LexicalDiv$TTR[fila] <- as.double(statis[1])
+	LexicalDiv$HerdanC[fila] <- as.double(statis[2])
+	LexicalDiv$GuiraudR[fila] <- as.double(statis[3])
+	LexicalDiv$UberIndex[fila] <- as.double(statis[5])
 }
-attach(LexicalDiv)
-#
-# The Uber Index test gives out a few non numerical results in form of a text "Inf" that has to be deleted in orther to perform the tests.
-#
-UberInd <- LexicalDiv[LexicalDiv$UberIndex!="Inf", ]
-#
-# t.tests on the Granted vs non granted populations
-# H0 the median of vocabulary diversity is the same in granted and non granted patents, with a 95% significance
-# HA the medians are different
-#
-t.test(HerdanC~Granted)  # p-value = 0.1082, no difference can be proven between granted and non granted patents in lexical diversity
-t.test(TTR~Granted)      # p-value = 0.1052, no difference exists
-t.test(GuiraudR~Granted) # p-value = 0.4659, no difference can be proven between granted and non granted patents in lexical diversity
-# The Uber Index test doesn't compute all the abstracts, in some cases the result is an "Inf" value that the t.test cannot compute. Since they are a small
-# fraction of the results eliminating the affected rows shouldn't affect the result
-#
-UberInd <- LexicalDiv[LexicalDiv$UberIndex!="Inf", ]
-t.test(UberInd$UberIndex~UberInd$Granted) # p-value = 0.047 the populations are different, altough the p-value is very close to the value 0,05
-#
-#
-#Normality test  Shapiro-Wilk
-#First the Granted non granted population will be separated, then the test of normalities will be applied to the vocabulary diversity results
-#
-Granted <- LexicalDiv[LexicalDiv$Granted==1, ]
-NonGranted <- LexicalDiv[LexicalDiv$Granted==0, ]
-#
-shapiro.test(Granted$HerdanC) 	   #  p-value = 0.1579
-shapiro.test(NonGranted$HerdanC)   #  p-value = 0.07579
-shapiro.test(Granted$TTR)	   	   #  p-value = 0.02253
-shapiro.test(NonGranted$TTR)	   #  p-value = 0.05392
-shapiro.test(Granted$GuiraudR)	   #  p-value = 0.4138
-shapiro.test(NonGranted$GuiraudR)  #  p-value = 0.5529
-#
-# for UberIndex it is necessary to eliminate non computable values
-UbGranted <- UberInd[UberInd$Granted==1, ]
-UbNonGranted <- UberInd[UberInd$Granted==0, ]
-#
-shapiro.test(UbGranted$UberIndex)   #  p-value < 2.2e-16
-shapiro.test(UbNonGranted$UberIndex)#  p-value < 2.2e-16
-#
-#Normal Q-Q plot, applied on the indexes populations gives a visual confirmation on the normality on non normality of the populations
-qqnorm(Granted$TTR)
-
+# The decimal separator "." might give problems in computers with an american decimal system in which "," is the standard
+# If that is the case, just delete (, dec = ".") from the following line
+write.table(LexicalDiv,file = "c:/Users/Chupacabras/Dropbox/datamining/EPO_Language/LexicalDiv.csv",row.names=FALSE, dec = ".")
